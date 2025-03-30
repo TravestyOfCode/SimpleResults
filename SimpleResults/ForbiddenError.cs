@@ -1,11 +1,12 @@
-﻿namespace SimpleResults;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace SimpleResults;
 
 public class ForbiddenError : Error
 {
+    [SetsRequiredMembers]
     public ForbiddenError() : this("Forbidden") { }
-    public ForbiddenError(string message)
-    {
-        ErrorCode = 403;
-        ErrorMessage = message;
-    }
+
+    [SetsRequiredMembers]
+    public ForbiddenError(string message) : base(403, message) { }
 }

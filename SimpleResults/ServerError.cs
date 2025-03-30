@@ -1,11 +1,12 @@
-﻿namespace SimpleResults;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace SimpleResults;
 
 public class ServerError : Error
 {
+    [SetsRequiredMembers]
     public ServerError() : this("Server Error") { }
-    public ServerError(string message)
-    {
-        ErrorCode = 500;
-        ErrorMessage = message;
-    }
+
+    [SetsRequiredMembers]
+    public ServerError(string message) : base(500, message) { }
 }

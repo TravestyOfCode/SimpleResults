@@ -1,13 +1,16 @@
-﻿namespace SimpleResults;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace SimpleResults;
 
 public class BadRequestError : Error
 {
+    [SetsRequiredMembers]
     public BadRequestError() : this("Bad Request") { }
-    public BadRequestError(string message)
-    {
-        ErrorCode = 400;
-        ErrorMessage = message;
-    }
+
+    [SetsRequiredMembers]
+    public BadRequestError(string message) : base(400, message) { }
+
+    [SetsRequiredMembers]
     public BadRequestError(string property, string message) : this("Bad Request")
     {
         if (ModelState.TryGetValue(property, out var list))
